@@ -11,4 +11,6 @@ class Runner:
 
     @birth.setter
     def birth(self, birth):
+        if len(str(birth)) == 2:
+            birth = "19"+str(birth)
         self.__birth = int(birth)
