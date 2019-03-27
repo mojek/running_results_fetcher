@@ -6,6 +6,15 @@ class Runner:
         self.birth = birth
 
     @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, name):
+        name = " ".join(name.split())
+        self.__name = name
+
+    @property
     def birth(self):
         return self.__birth
 

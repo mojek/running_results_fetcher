@@ -20,3 +20,8 @@ def test_setting_runner_birth_with_short_string():
 def test_setting_runner_birth_with_short_int():
     runner = Runner("Michal Mojek", 80)
     assert runner.birth == 1980
+
+
+def test_setting_runner_name_with_onclean_data():
+    runner = Runner("  Michal   Mojek ", 1980)
+    assert runner.name == 'Michal Mojek'
