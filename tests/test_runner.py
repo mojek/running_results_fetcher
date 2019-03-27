@@ -1,6 +1,12 @@
 from running_results_fetcher.runner import Runner
 
 
-def test_setting_runner_name_by_init():
-    runner = Runner("Michal Mojek")
+def test_setting_runner():
+    runner = Runner("Michal Mojek", 1980)
     assert runner.name == 'Michal Mojek'
+    assert runner.birth == 1980
+
+
+def test_setting_runner_birth_with_string():
+    runner = Runner("Michal Mojek", "1980")
+    assert runner.birth == 1980
