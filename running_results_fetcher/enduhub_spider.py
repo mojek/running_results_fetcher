@@ -22,7 +22,8 @@ class EnduhubSpider(scrapy.Spider):
     @classmethod
     def create_url(cls, runner):
         cls.start_urls.append(
-            f"{cls.url_domain_name}/pl/search/?name={runner.name}&page=1")
+            "{}/pl/search/?name={}&page=1"
+            .format(cls.url_domain_name, runner.name))
 
     def __find_next_page(self, response):
         NEXT_PAGE_SELECTOR = '.pagination .pages .active + li a::attr(href)'
