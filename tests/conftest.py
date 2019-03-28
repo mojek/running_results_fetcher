@@ -1,6 +1,6 @@
 from pytest import fixture
 from running_results_fetcher.runner import Runner
-from running_results_fetcher.fetcher_manager import FetcherManager
+from running_results_fetcher.running_results_fetcher import RunningResultFetcher
 
 
 @fixture(scope="function")
@@ -9,5 +9,5 @@ def runner():
 
 
 @fixture(scope="function")
-def fetcher_manager():
-    return FetcherManager()
+def rrf():
+    return RunningResultFetcher()
