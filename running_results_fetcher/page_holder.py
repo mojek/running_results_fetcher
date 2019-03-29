@@ -13,5 +13,5 @@ class PageHolder:
         soup = BeautifulSoup(self.raw_html, 'html.parser')
         for row in soup.find_all('tr', class_='Zawody'):
             event_name = row.find('td', class_='event').get_text()
-            race_result = RaceResult(event_name)
+            race_result = RaceResult(race_name=event_name)
             self.race_results.append(race_result)

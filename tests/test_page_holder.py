@@ -34,3 +34,10 @@ def test_race_results_race_name(raw_page_html):
     page.parse_page()
     first_race = page.race_results[0]
     assert first_race.race_name == 'V Bieg Niepodległości'
+
+
+# def test_race_results_race_name(raw_page_html):
+#     page = PageHolder(raw_page_html)
+#     page.parse_page()
+#     first_race = page.race_results[0]
+#     assert first_race.distance == 10
