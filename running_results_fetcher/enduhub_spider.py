@@ -1,5 +1,4 @@
 import scrapy
-from running_results_fetcher.page_holder import PageHolder
 
 
 class EnduhubSpider(scrapy.Spider):
