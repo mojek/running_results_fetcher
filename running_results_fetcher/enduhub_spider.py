@@ -1,4 +1,5 @@
 import scrapy
+from running_results_fetcher.page_holder import PageHolder
 
 
 class EnduhubSpider(scrapy.Spider):
@@ -6,6 +7,7 @@ class EnduhubSpider(scrapy.Spider):
     name = "enduhub"
     url_domain_name = "https://enduhub.com"
     start_urls = []
+    pages = []
 
     def parse(self, response):
         page = response.url[-1]
@@ -25,7 +27,12 @@ class EnduhubSpider(scrapy.Spider):
             "{}/pl/search/?name={}&page=1"
             .format(cls.url_domain_name, runner.name))
 
+    @classmethod
     def __find_next_page(self, response):
         NEXT_PAGE_SELECTOR = '.pagination .pages .active + li a::attr(href)'
         next_page = response.css(NEXT_PAGE_SELECTOR).extract_first()
         return next_page
+
+    @classmethod
+    def add_page(cls, page):
+        cls.pages.append(page)
