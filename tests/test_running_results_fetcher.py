@@ -10,7 +10,6 @@ from click.testing import CliRunner
 from running_results_fetcher import running_results_fetcher
 from running_results_fetcher.runner import Runner
 from running_results_fetcher import cli
-import running_results_fetcher.spider_runner
 
 
 def test_set_runner_to_running_results_fetcher(runner, rrf):
@@ -29,14 +28,15 @@ def test_command_line_interface():
     assert '--help  Show this message and exit.' in help_result.output
 
 
-@patch('running_results_fetcher.running_results_fetcher.SpiderRunner')
+@patch('running_results_fetcher.running_results_fetcher.SpiderRunner.start')
 def test_fetch_data_and_set_download_data_to_true(SpiderRunnerMock, rrf, runner):
     rrf.set_runner(runner)
     rrf.fetch_data()
-    assert rrf.data_downloaded == True
+    assert rrf.data_downloaded is True
 
 
 # def test_fetch_data(runner, rrf):
 #     rrf.set_runner(runner)
+#     print('tests')
 #     rrf.fetch_data()
-#     assert rrf.data_downloaded == True
+#     assert rrf.data_downloaded is True

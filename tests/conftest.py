@@ -1,6 +1,9 @@
 from pytest import fixture
 from running_results_fetcher.runner import Runner
 from running_results_fetcher.running_results_fetcher import RunningResultFetcher
+from running_results_fetcher.spider_config import SpiderConfig
+
+from running_results_fetcher.enduhub_spider import EnduhubSpider
 
 
 @fixture(scope="function")
@@ -11,6 +14,15 @@ def runner():
 @fixture(scope="function")
 def rrf():
     return RunningResultFetcher()
+
+
+@fixture(scope="function")
+def endu_spider():
+    config = SpiderConfig(domain_name='enduhub.com')
+    runner = Runner('Michał Mojek', 1980)
+    config.url_suffix = "/pl/search/?name={}&page=1".format(runner.name)
+    EnduhubSpider.set_config(config)
+    return EnduhubSpider
 
 
 @fixture(scope="function")

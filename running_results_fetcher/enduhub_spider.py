@@ -1,12 +1,13 @@
 import scrapy
+from running_results_fetcher.spider_config import SpiderConfig
 
 
 class EnduhubSpider(scrapy.Spider):
-    allowed_domains = ["enduhub.com"]
-    name = "enduhub"
-    url_domain_name = "https://enduhub.com"
+    allowed_domains = []
     start_urls = []
     pages = []
+    protocol = 'https://'
+    config = SpiderConfig()
 
     def parse(self, response):
         page = response.url[-1]
@@ -21,10 +22,12 @@ class EnduhubSpider(scrapy.Spider):
                 callback=self.parse)
 
     @classmethod
-    def create_url(cls, runner):
-        cls.start_urls.append(
-            "{}/pl/search/?name={}&page=1"
-            .format(cls.url_domain_name, runner.name))
+    def set_config(cls, config):
+        cls.protocol = config.protocol
+        cls.domain_name = config.domain_name
+        cls.name = config.name
+        cls.start_urls.append(config.start_url)
+        cls.allowed_domains.append(cls.domain_name)
 
     @classmethod
     def __find_next_page(self, response):

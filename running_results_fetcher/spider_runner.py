@@ -13,6 +13,11 @@ class SpiderRunner:
             'USER_AGENT':
             'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'
         })
-        self.spider.create_url(self.runner)
         process.crawl(self.spider)
         process.start()
+        self.finished = True
+
+    def __str__(self):
+        return "{} {} {}".format(self.spider.name,
+                                 self.runner.name,
+                                 self.runner.birth)
