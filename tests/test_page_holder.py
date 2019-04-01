@@ -13,7 +13,7 @@ def test_extract_race_results_from_raw_html(raw_page_html):
 
 def test_parse_page(raw_page_html):
     page = PageHolder(raw_page_html)
-    assert page.parse_page() == None
+    assert page.parse_page() is None
 
 
 def test_race_results_after_parse_page(raw_page_html):

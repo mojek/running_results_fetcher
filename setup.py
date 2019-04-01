@@ -12,7 +12,7 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 
-requirements = ['Click>=6.0', 'Scrapy>=1.6', 'bs4']
+requirements = ['Click>=6.0', 'Scrapy>=1.6', 'Beautifulsoup4']
 
 setup_requirements = ['pytest-runner', ]
 
@@ -34,7 +34,8 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
     ],
-    description="Running Results Fetcher download informations about past races for given runners",
+    description="""Running Results Fetcher download
+                   informations about past races for given runners""",
     entry_points={
         'console_scripts': [
             'running_results_fetcher=running_results_fetcher.cli:main',

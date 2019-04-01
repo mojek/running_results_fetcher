@@ -16,4 +16,6 @@ class SpiderConfig:
 
     @property
     def start_url(self):
-        return "{}{}{}".format(self.protocol, self.domain_name, self.url_suffix)
+        return "{}{}{}".format(self.protocol,
+                               self.domain_name,
+                               self.url_suffix)
