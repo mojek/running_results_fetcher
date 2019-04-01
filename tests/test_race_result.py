@@ -1,3 +1,4 @@
+import datetime
 from running_results_fetcher.race_result import RaceResult
 
 
@@ -33,3 +34,37 @@ def test_race_results_distance_strig_polmaraton():
     assert race_result.distance == 21.05
     race_result = RaceResult(distance='półmaraton')
     assert race_result.distance == 21.05
+
+
+def test_runner_brith_with_string():
+    race_result = RaceResult(runner_birth='1980')
+    assert race_result.runner_birth == 1980
+
+
+def test_runner_brith_with_int():
+    race_result = RaceResult(runner_birth=1980)
+    assert race_result.runner_birth == 1980
+
+
+def test_runner_brith_with_short_string():
+    race_result = RaceResult(runner_birth='80')
+    assert race_result.runner_birth == 1980
+
+
+def test_create_race_from_dict():
+    race = {
+        'race_name': 'Biegnij Warszawo',
+        'race_date': '2018-10-11',
+        'distance': '10 km',
+        'race_type': 'bieganie',
+        'runner_birth': '1997',
+        'result_of_the_race': '00:39:12'
+    }
+    race_result = RaceResult(**race)
+    assert race_result.race_name == 'Biegnij Warszawo'
+    assert race_result.race_date == datetime.date(2018, 10, 11)
+    assert race_result.distance == 10.0
+    assert race_result.race_type == 'bieganie'
+    assert race_result.runner_birth == 1997
+    assert race_result.result_of_the_race == datetime.timedelta(
+        hours=0, minutes=39, seconds=12)

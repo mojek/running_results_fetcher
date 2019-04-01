@@ -8,7 +8,6 @@ from click.testing import CliRunner
 
 
 from running_results_fetcher import cli
-from running_results_fetcher.spider import Spider
 
 
 def test_command_line_interface():
@@ -22,16 +21,17 @@ def test_command_line_interface():
     assert '--help  Show this message and exit.' in help_result.output
 
 
-@patch('running_results_fetcher.running_results_fetcher.SpiderRunner.start')
+@patch('running_results_fetcher.running_results_fetcher.'
+       'SpiderRunner.download_raw_pages')
 def test_fetch_data_and_download_data_to_true(SpiderRunnerMock, rrf,
                                               spider_config, raw_page_html):
     rrf.set_spider_config(spider_config)
-    spider_config.runner.raw_pages.append(raw_page_html)
-    rrf.fetch_data()
+    #
+    rrf.fetch_data_for_runner()
     assert rrf.data_downloaded is True
 
 
-def test_fetch_data(rrf, spider_config):
-    rrf.set_spider_config(spider_config)
-    rrf.fetch_data()
-    assert rrf.data_downloaded is True
+# def test_fetch_data_for_runner(rrf, spider_config):
+#     rrf.set_spider_config(spider_config)
+#     rrf.fetch_data_for_runner()
+#     assert rrf.data_downloaded is True

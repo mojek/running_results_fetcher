@@ -8,7 +8,7 @@ class SpiderRunner:
         self.spider = spider
         self.spider.set_config(spider_config)
 
-    def start(self):
+    def download_raw_pages(self):
         process = CrawlerProcess({
             'USER_AGENT':
             'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'
@@ -16,9 +16,10 @@ class SpiderRunner:
         print(self)
         process.crawl(self.spider)
         process.start()
-        self.spider.spider_config.runner.raw_pages = self.spider.raw_pages
+        raw_pages = self.spider.raw_pages
         self.spider.raw_pages = []
         self.finished = True
+        return raw_pages
 
     def __str__(self):
         return "{} {}".format(self.spider.name,

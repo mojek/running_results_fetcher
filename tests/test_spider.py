@@ -1,6 +1,5 @@
 from running_results_fetcher.spider import Spider
 from running_results_fetcher.runner import Runner
-from running_results_fetcher.enduhube_page_parser import EnduhubPageParser
 from running_results_fetcher.spider_config import SpiderConfig
 
 

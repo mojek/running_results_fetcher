@@ -1,6 +1,6 @@
 from .spider_runner import SpiderRunner
 from .spider import Spider
-from .enduhube_page_parser import EnduhubPageParser
+# from .enduhube_page_parser import EnduhubPageParser
 
 
 class RunningResultFetcher:
@@ -13,10 +13,13 @@ class RunningResultFetcher:
     def set_spider_config(self, spider_config):
         self.spider_config = spider_config
 
-    def fetch_data(self):
+    def fetch_data_for_runner(self):
         spider = SpiderRunner(Spider, self.spider_config)
-        spider.start()
-        for raw_page in self.spider_config.runner.raw_pages:
-            page = EnduhubPageParser(raw_page)
-            page.parse_page()
-            self.data_downloaded = True
+        raw_pages = spider.download_raw_pages()
+
+        for raw_page in raw_pages:
+            pass
+            # page = EnduhubPageParser(raw_page)
+            # list_of_races = page.parse_page()
+
+        self.data_downloaded = True
