@@ -27,7 +27,7 @@ def test_command_line_interface():
 
 
 @patch('running_results_fetcher.running_results_fetcher.SpiderRunner.start')
-def test_fetch_data_and_set_download_data_to_true(SpiderRunnerMock, rrf, runner):
+def test_fetch_data_and_download_data_to_true(SpiderRunnerMock, rrf, runner):
     rrf.set_runner(runner)
     rrf.fetch_data()
     assert rrf.data_downloaded is True
