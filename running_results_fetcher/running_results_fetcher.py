@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from .spider_runner import SpiderRunner
 from .enduhub_spider import EnduhubSpider
 

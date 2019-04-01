@@ -3,11 +3,9 @@
 
 """Tests for `running_results_fetcher` package."""
 
-import pytest
 from unittest.mock import patch
 from click.testing import CliRunner
 
-from running_results_fetcher import running_results_fetcher
 from running_results_fetcher.runner import Runner
 from running_results_fetcher import cli
 

@@ -23,7 +23,7 @@ class RaceResult:
             return
         import re
         result = distance
-        if type(distance) == str:
+        if isinstance(distance, str):
             if distance.lower() == "maraton":
                 result = 42.1
             elif distance.lower() == "półmaraton":
