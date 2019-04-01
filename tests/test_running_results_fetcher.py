@@ -6,13 +6,9 @@
 from unittest.mock import patch
 from click.testing import CliRunner
 
-from running_results_fetcher.runner import Runner
+
 from running_results_fetcher import cli
-
-
-def test_set_runner_to_running_results_fetcher(runner, rrf):
-    rrf.set_runner(runner)
-    assert isinstance(rrf.runner, Runner)
+from running_results_fetcher.spider import Spider
 
 
 def test_command_line_interface():
@@ -27,14 +23,15 @@ def test_command_line_interface():
 
 
 @patch('running_results_fetcher.running_results_fetcher.SpiderRunner.start')
-def test_fetch_data_and_download_data_to_true(SpiderRunnerMock, rrf, runner):
-    rrf.set_runner(runner)
+def test_fetch_data_and_download_data_to_true(SpiderRunnerMock, rrf,
+                                              spider_config, raw_page_html):
+    rrf.set_spider_config(spider_config)
+    spider_config.runner.raw_pages.append(raw_page_html)
     rrf.fetch_data()
     assert rrf.data_downloaded is True
 
 
-# def test_fetch_data(runner, rrf):
-#     rrf.set_runner(runner)
-#     print('tests')
-#     rrf.fetch_data()
-#     assert rrf.data_downloaded is True
+def test_fetch_data(rrf, spider_config):
+    rrf.set_spider_config(spider_config)
+    rrf.fetch_data()
+    assert rrf.data_downloaded is True

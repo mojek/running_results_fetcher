@@ -1,9 +1,9 @@
 from pytest import fixture
 from running_results_fetcher.runner import Runner
-from running_results_fetcher.running_results_fetcher import RunningResultFetcher
+from running_results_fetcher.running_results_fetcher \
+    import RunningResultFetcher
 from running_results_fetcher.spider_config import SpiderConfig
-
-from running_results_fetcher.enduhub_spider import EnduhubSpider
+from running_results_fetcher.spider import Spider
 
 
 @fixture(scope="function")
@@ -19,10 +19,21 @@ def rrf():
 @fixture(scope="function")
 def endu_spider():
     config = SpiderConfig(domain_name='enduhub.com')
+    config.runner = Runner('Michał Mojek', 1980)
+    config.url_suffix = "/pl/search/?name={}&page=1".format(config.runner.name)
+    Spider.set_config(config)
+    return Spider
+
+
+@fixture(scope="function")
+def spider_config():
     runner = Runner('Michał Mojek', 1980)
+    config = SpiderConfig(domain_name='enduhub.com')
+    config.runner = runner
     config.url_suffix = "/pl/search/?name={}&page=1".format(runner.name)
-    EnduhubSpider.set_config(config)
-    return EnduhubSpider
+    selctor = '.pagination .pages .active + li a::attr(href)'
+    config.next_page_selector = selctor
+    return config
 
 
 @fixture(scope="function")

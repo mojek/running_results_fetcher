@@ -4,6 +4,8 @@ class SpiderConfig:
     def __init__(self, **kwargs):
         self.domain_name = kwargs.get('domain_name', '')
         self.protocol = kwargs.get('protocol', 'https://')
+        self.next_page_selector = kwargs.get('next_page_selector')
+        self.runner = kwargs.get('runner')
 
     @property
     def domain_name(self):

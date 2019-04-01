@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 from .race_result import RaceResult
 
 
-class PageHolder:
+class EnduhubPageParser:
     """It' take care of downloaded page"""
 
     def __init__(self, raw_html):
