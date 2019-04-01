@@ -14,7 +14,7 @@ def test_race_results_distance_string_without_space():
 def test_race_results_distance_have_float_type():
     race_result = RaceResult(distance=10)
     assert race_result.distance == 10.0
-    assert type(race_result.distance) == float
+    assert isinstance(race_result.distance, float)
 
 
 def test_race_results_distance_strig_maraton():

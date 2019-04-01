@@ -15,8 +15,8 @@ def test_start_urlr_with_injected_configuration():
     config = SpiderConfig(domain_name='enduhub.com')
     config.url_suffix = "/pl/search/?name={}&page=1".format(runner.name)
     EnduhubSpider.set_config(config)
-    url_to_test = 'https://enduhub.com/pl/search/?name=Michał Mojek&page=1'
-    assert EnduhubSpider.start_urls[0] == url_to_test
+    url_for_test = 'https://enduhub.com/pl/search/?name=Michał Mojek&page=1'
+    assert EnduhubSpider.start_urls[0] == url_for_test
 
 
 def test_allowed_domain_with_injected_configuration():

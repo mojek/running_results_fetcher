@@ -17,4 +17,5 @@ def test_stater_url():
     config = SpiderConfig(domain_name='enduhub.com')
     runner = Runner('Michał Mojek', 1980)
     config.url_suffix = "/pl/search/?name={}&page=1".format(runner.name)
-    assert config.start_url == 'https://enduhub.com/pl/search/?name=Michał Mojek&page=1'
+    url_for_test = 'https://enduhub.com/pl/search/?name=Michał Mojek&page=1'
+    assert config.start_url == url_for_test
