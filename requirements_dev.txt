@@ -1,15 +1,15 @@
-pip==18.1
+pip==19.0.3
 bumpversion==0.5.3
 wheel==0.32.1
 watchdog==0.9.0
-flake8==3.5.0
-tox==3.5.2
-coverage==4.5.1
-Sphinx==1.8.1
-twine==1.12.1
+flake8==3.7.7
+tox==3.8.3
+coverage==4.5.3
+Sphinx==2.0.0
+twine==1.13.0
 codecov==2.0.15
 cookiecutter==1.6.0
-autopep8==0.8
+autopep8==1.4.3
 
 pytest==3.8.2
 pytest-runner==4.2
