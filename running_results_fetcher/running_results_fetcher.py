@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from running_results_fetcher.spider_runner import SpiderRunner
-from running_results_fetcher.enduhub_spider import EnduhubSpider
+from .spider_runner import SpiderRunner
+from .enduhub_spider import EnduhubSpider
 
 
 class RunningResultFetcher:

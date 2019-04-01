@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from running_results_fetcher.race_result import RaceResult
+from .race_result import RaceResult
 
 
 class PageHolder:

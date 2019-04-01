@@ -1,5 +1,5 @@
 import scrapy
-from running_results_fetcher.spider_config import SpiderConfig
+from .spider_config import SpiderConfig
 
 
 class EnduhubSpider(scrapy.Spider):
