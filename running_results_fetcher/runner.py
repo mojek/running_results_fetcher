@@ -9,9 +9,19 @@ class Runner:
         self.birth = birth
         self.race_results = []
 
-    def best_time_on_distance(self, distance, race_type, from_date, to_date):
-        # TODO best time on distance
-        pass
+    def best_time_on_distance(self, distance, race_type,
+                              from_date=None, to_date=None):
+        """Return best time on given distance"""
+        if len(self.race_results) == 0:
+            raise ValueError("Runner don't have race results")
+
+        best_time_race = None
+        for race in self.race_results:
+            if not best_time_race:
+                best_time_race = race.result_of_the_race
+            if race.result_of_the_race < best_time_race:
+                best_time_race = race.result_of_the_race
+        return best_time_race
 
     def km_count(self, race_type, from_date, to_date):
         # TODO km count
