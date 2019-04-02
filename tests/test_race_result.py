@@ -68,3 +68,25 @@ def test_create_race_from_dict():
     assert race_result.runner_birth == 1997
     assert race_result.result_of_the_race == datetime.timedelta(
         hours=0, minutes=39, seconds=12)
+
+
+def test_equality():
+    race_result1 = {
+        'race_name': 'Bieg Niepodległości',
+        'race_date': '2018-11-11',
+        'distance': '10 km',
+        'race_type': 'bieganie',
+        'runner_birth': '1980',
+        'result_of_the_race': '00:39:12'
+    }
+    race_result2 = {
+        'race_name': 'Bieg Niepodległości',
+        'race_date': '2018-11-11',
+        'distance': '10 km',
+        'race_type': 'bieganie',
+        'runner_birth': '1980',
+        'result_of_the_race': '00:39:12'
+    }
+    race1 = RaceResult(**race_result1)
+    race2 = RaceResult(**race_result2)
+    assert race1 == race2

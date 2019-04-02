@@ -9,6 +9,24 @@ class Runner:
         self.birth = birth
         self.race_results = []
 
+    def best_time_on_distance(self, distance, race_type, from_date, to_date):
+        # TODO best time on distance
+        pass
+
+    def km_count(self, race_type, from_date, to_date):
+        # TODO km count
+        pass
+
+    def longest_run(self, race_type, from_date, to_date):
+        # TODO longest run
+        pass
+
+    def add_races(self, races):
+        for race in races:
+            race_result = RaceResult(**race)
+            if self.__can_add_race(race_result):
+                self.race_results.append(race_result)
+
     @property
     def name(self):
         return self.__name
@@ -28,8 +46,9 @@ class Runner:
             birth = "19"+str(birth)
         self.__birth = int(birth)
 
-    def add_races(self, races):
-        for race in races:
-            race_result = RaceResult(**race)
-            if race_result.runner_birth == self.birth:
-                self.race_results.append(race_result)
+    def __can_add_race(self, race_result):
+        if not race_result.runner_birth == self.birth:
+            return False
+        if race_result in self.race_results:
+            return False
+        return True

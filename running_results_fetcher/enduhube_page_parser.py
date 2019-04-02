@@ -15,3 +15,4 @@ class EnduhubPageParser:
             event_name = row.find('td', class_='event').get_text()
             race_result = RaceResult(race_name=event_name)
             self.race_results.append(race_result)
+            # TODO parse other field

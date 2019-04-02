@@ -11,6 +11,16 @@ class RaceResult:
         self.race_type = kwargs.get('race_type')
         self.result_of_the_race = kwargs.get('result_of_the_race')
 
+    def __eq__(self, other):
+        """Overrides the default implementation of equality"""
+        if not self.race_name == other.race_name:
+            return False
+        if not self.distance == other.distance:
+            return False
+        if not self.race_date == other.race_date:
+            return False
+        return True
+
     @property
     def race_name(self):
         return self.__race_name
@@ -48,8 +58,9 @@ class RaceResult:
 
     @runner_birth.setter
     def runner_birth(self, runner_birth):
-        if runner_birth is None:
-            return None
+        if not runner_birth:
+            self.__runner_birth = None
+            return
         if len(str(runner_birth)) == 2:
             runner_birth = "19"+str(runner_birth)
         self.__runner_birth = int(runner_birth)
@@ -72,7 +83,7 @@ class RaceResult:
 
     @result_of_the_race.setter
     def result_of_the_race(self, string_time):
-        """Parse string and change  to time delta"""
+        """Parse string and change to time delta"""
         if not string_time:
             return
         ti = string_time.split(':')
@@ -81,10 +92,8 @@ class RaceResult:
             minute = int(ti[1])
             second = int(ti[2])
         except ValueError:
-            # logger.error("Wrong time format. Skipped result")
             time_delta = None
         except IndexError:
-            # logger.error("Wrong time format. Skipped result")
             time_delta = None
         else:
             time_delta = timedelta(hours=hour, minutes=minute, seconds=second)

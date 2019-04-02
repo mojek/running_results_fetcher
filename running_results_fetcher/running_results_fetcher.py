@@ -16,7 +16,7 @@ class RunningResultFetcher:
     def fetch_data_for_runner(self):
         spider = SpiderRunner(Spider, self.spider_config)
         raw_pages = spider.download_raw_pages()
-
+        # TODO extrackt results and add to runner
         for raw_page in raw_pages:
             pass
             # page = EnduhubPageParser(raw_page)
