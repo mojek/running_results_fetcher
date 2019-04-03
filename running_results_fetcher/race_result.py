@@ -21,6 +21,21 @@ class RaceResult:
             return False
         return True
 
+    def __str__(self):
+        return "{}{}{}".format(self.race_name, self.distance,
+                               self.result_of_the_race)
+
+    def __repr__(self):
+        return "{}".format(self.result_of_the_race)
+
+    def match_date(**kwargs):
+        # from_date = kwargs.get('from_date')
+        # to_date = kwargs.get('to_date')
+        # if from_date and from_data > self.race_date:
+        #     return False
+        # TODO match given race results date
+        pass
+
     @property
     def race_name(self):
         return self.__race_name
@@ -38,7 +53,7 @@ class RaceResult:
     def distance(self, distance):
         if distance is None or distance is float:
             self.__distance = distance
-            return
+            return None
         import re
         result = distance
         if isinstance(distance, str):
@@ -85,7 +100,7 @@ class RaceResult:
     def result_of_the_race(self, string_time):
         """Parse string and change to time delta"""
         if not string_time:
-            return
+            return None
         ti = string_time.split(':')
         try:
             hour = int(ti[0])

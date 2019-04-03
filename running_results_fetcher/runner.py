@@ -1,3 +1,4 @@
+import datetime
 from .race_result import RaceResult
 
 
@@ -9,19 +10,18 @@ class Runner:
         self.birth = birth
         self.race_results = []
 
-    def best_time_on_distance(self, distance, race_type,
-                              from_date=None, to_date=None):
+    def best_time_on_distance(self, distance, race_type, **kwargs):
         """Return best time on given distance"""
-        if len(self.race_results) == 0:
+        from_date = kwargs.get('from_date')
+        to_date = kwargs.get('to_date')
+        if not self.race_results:
             raise ValueError("Runner don't have race results")
-
-        best_time_race = None
-        for race in self.race_results:
-            if not best_time_race:
-                best_time_race = race.result_of_the_race
-            if race.result_of_the_race < best_time_race:
-                best_time_race = race.result_of_the_race
-        return best_time_race
+        filered_races = self.__filter_race(
+            self.race_results, race_type, from_date, to_date)
+        best_result = sorted(filered_races,
+                             key=lambda race: race.result_of_the_race,
+                             reverse=False)
+        return best_result[0].result_of_the_race
 
     def km_count(self, race_type, from_date, to_date):
         # TODO km count
@@ -62,3 +62,21 @@ class Runner:
         if race_result in self.race_results:
             return False
         return True
+
+    @staticmethod
+    def __filter_race(list_of_races, race_type,
+                      from_date=None, to_date=None):
+        if from_date:
+            from_date = datetime.datetime.strptime(
+                from_date, '%Y-%m-%d').date()
+        if to_date:
+            to_date = datetime.datetime.strptime(
+                to_date, '%Y-%m-%d').date()
+
+        from_date = from_date or \
+            (datetime.datetime.now() - datetime.timedelta(days=100*365)).date()
+
+        to_date = to_date or datetime.datetime.now().date()
+        return (race for race in list_of_races
+                if race.race_type == race_type
+                and from_date <= race.race_date <= to_date)

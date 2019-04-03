@@ -26,7 +26,7 @@ def test_command_line_interface():
 def test_fetch_data_and_download_data_to_true(SpiderRunnerMock, rrf,
                                               spider_config, raw_page_html):
     rrf.set_spider_config(spider_config)
-    #
+    # TODO monkey patching do right test
     rrf.fetch_data_for_runner()
     assert rrf.data_downloaded is True
 

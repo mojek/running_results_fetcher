@@ -98,22 +98,47 @@ def test_best_time_on_distance():
                        distance="10 km", result_of_the_race='00:49:12')
     race_3 = race_dict(race_date='2018-09-11',
                        distance="21 km", result_of_the_race='01:39:12')
+    race_3 = race_dict(race_date='2018-09-11',
+                       distance="21 km", result_of_the_race='00:30:12',
+                       race_type="Bieganie górskie")
     runner.add_races([race_1, race_2, race_4, race_3])
 
-    assert str(runner.best_time_on_distance('10 km', 'bieganie')) == '0:39:12'
+    assert str(runner.best_time_on_distance('10 km', 'Bieganie')) == '0:39:12'
+
+
+def test_best_time_on_distanc_with_date_filter():
+    runner = Runner("Michal Mojek", 80)
+    race_4 = race_dict(race_date='2018-11-11',
+                       distance="10 km", result_of_the_race='00:39:12')
+    race_2 = race_dict(race_date='2018-11-13',
+                       distance="10 km", result_of_the_race='00:29:12')
+    race_1 = race_dict(race_date='2018-12-11',
+                       distance="10 km", result_of_the_race='00:49:12')
+    race_3 = race_dict(race_date='2018-09-11',
+                       distance="21 km", result_of_the_race='01:39:12')
+    race_3 = race_dict(race_date='2018-09-11',
+                       distance="21 km", result_of_the_race='00:30:12',
+                       race_type="Bieganie górskie")
+    runner.add_races([race_1, race_2, race_4, race_3])
+    test_1 = runner.best_time_on_distance(
+        '10 km', 'Bieganie', from_date='2018-12-01')
+    test_2 = runner.best_time_on_distance(
+        '10 km', 'Bieganie', from_date='2018-11-01', to_date='2018-12-01')
+    assert str(test_1) == '0:49:12'
+    assert str(test_2) == '0:29:12'
 
 
 def test_best_time_on_distance_rice_value_error_when_no_run():
     runner = Runner("Michal Mojek", 80)
     with pytest.raises(ValueError):
-        runner.best_time_on_distance('10 km', 'bieganie')
+        runner.best_time_on_distance('10 km', 'Bieganie')
 
 
 def race_dict(**kwargs):
     race_name = kwargs.get('race_name', 'Biegnij Warszawo')
     race_date = kwargs.get('race_date', '2017-10-11')
     distance = kwargs.get('distance', '10km')
-    race_type = kwargs.get('race_type', 'bieganie')
+    race_type = kwargs.get('race_type', 'Bieganie')
     runner_birth = kwargs.get('runner_birth', '1980')
     result_of_the_race = kwargs.get('result_of_the_race', '00:36:12')
     race = {
