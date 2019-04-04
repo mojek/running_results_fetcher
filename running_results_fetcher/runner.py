@@ -9,6 +9,7 @@ class Runner:
         self.name = name
         self.birth = birth
         self.race_results = []
+    # make new class statictics with params from date to date race type
 
     def best_time_on_distance(self, distance, race_type, **kwargs):
         """Return best time on given distance"""
@@ -23,11 +24,16 @@ class Runner:
                              reverse=False)
         return best_result[0].result_of_the_race
 
-    def km_count(self, race_type, from_date, to_date):
-        # TODO km count
-        pass
+    def km_count(self, race_type, **kwargs):
+        from_date = kwargs.get('from_date')
+        to_date = kwargs.get('to_date')
+        if not self.race_results:
+            raise ValueError("Runner don't have race results")
+        filered_races = self.__filter_race(
+            self.race_results, race_type, from_date, to_date)
+        return sum(race.distance for race in filered_races)
 
-    def longest_run(self, race_type, from_date, to_date):
+    def longest_run(self, race_type, **kwargs):
         # TODO longest run
         pass
 

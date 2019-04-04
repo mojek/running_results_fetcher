@@ -28,14 +28,6 @@ class RaceResult:
     def __repr__(self):
         return "{}".format(self.result_of_the_race)
 
-    def match_date(**kwargs):
-        # from_date = kwargs.get('from_date')
-        # to_date = kwargs.get('to_date')
-        # if from_date and from_data > self.race_date:
-        #     return False
-        # TODO match given race results date
-        pass
-
     @property
     def race_name(self):
         return self.__race_name

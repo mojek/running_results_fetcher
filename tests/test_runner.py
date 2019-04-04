@@ -134,6 +134,19 @@ def test_best_time_on_distance_rice_value_error_when_no_run():
         runner.best_time_on_distance('10 km', 'Bieganie')
 
 
+def test_km_count():
+    runner = Runner("Michal Mojek", 80)
+    races = []
+    races.append(race_dict(race_date='2018-11-11', distance="10 km"))
+    races.append(race_dict(race_date='2018-11-12', distance="23 km"))
+    races.append(race_dict(race_date='2018-11-13', distance="15 km"))
+    races.append(race_dict(race_date='2018-11-14', distance="15 km"))
+    races.append(race_dict(race_date='2018-11-14',
+                           distance="15 km", race_type="Bieganie górskie"))
+    runner.add_races(races)
+    assert runner.km_count('Bieganie') == 63
+
+
 def race_dict(**kwargs):
     race_name = kwargs.get('race_name', 'Biegnij Warszawo')
     race_date = kwargs.get('race_date', '2017-10-11')
