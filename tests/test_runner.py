@@ -97,20 +97,22 @@ def test_best_time_on_distance():
     race_1 = race_dict(race_date='2018-10-11',
                        distance="10 km", result_of_the_race='00:49:12')
     race_3 = race_dict(race_date='2018-09-11',
-                       distance="21 km", result_of_the_race='01:39:12')
+                       distance="21 km", result_of_the_race='00:09:12')
     race_5 = race_dict(race_date='2018-09-11',
                        distance="21 km", result_of_the_race='00:25:12',
                        race_type="Bieganie górskie")
-    race_6 = race_dict(race_date='2018-09-11',
+    race_6 = race_dict(race_date='2018-09-12',
                        distance="21 km", result_of_the_race='01:30:12',
                        race_type="Bieganie górskie")
     runner.add_races([race_1, race_2, race_4, race_3,  race_5, race_6])
 
     runner.filter_races(race_type="Bieganie")
-    assert str(runner.best_time_on_distance('10 km')) == '0:39:12'
+    assert str(runner.best_time_on_distance(10)) == '0:39:12'
+
+    # TODO assert str(runner.best_time_on_distance("10 km")) == '0:39:12'
 
     runner.filter_races(race_type="Bieganie górskie")
-    assert str(runner.best_time_on_distance('21 km')) == '0:25:12'
+    assert str(runner.best_time_on_distance(21)) == '0:25:12'
 
 
 def test_best_time_on_distance_rice_value_error_when_no_run():

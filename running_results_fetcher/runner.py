@@ -16,7 +16,7 @@ class Runner:
     def best_time_on_distance(self, distance):
         """Return best time on given distance"""
         stats = self.stats
-        return stats.best_time_on_distance(10)
+        return stats.best_time_on_distance(distance)
 
     def km_count(self):
         stats = self.stats

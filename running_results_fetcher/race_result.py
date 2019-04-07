@@ -49,6 +49,7 @@ class RaceResult:
             return None
         import re
         result = distance
+        # TODO  move to convert_distance ib helpers
         if isinstance(distance, str):
             if distance.lower() == "maraton":
                 result = 42.1

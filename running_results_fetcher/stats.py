@@ -16,8 +16,10 @@ class Stats:
         return sum(race.distance for race in self.race_results)
 
     def best_time_on_distance(self, distance):
-
-        best_result = sorted(self.race_results,
+        # TODO filter race by distances
+        filter_race_with_disntace = (
+            race for race in self.race_results if race.distance == distance)
+        best_result = sorted(filter_race_with_disntace,
                              key=lambda race: race.result_of_the_race,
                              reverse=False)
         if not best_result:

@@ -21,3 +21,8 @@ def string_to_date(date_string):
     """Change string format YYYY-MM-DD to date instance"""
     year, month, day = date_string.split('-')
     return date(int(year), int(month), int(day))
+
+
+def convert_distance(distance):
+    """Covert distance string or int to float"""
+    # TODO convert_distance and do some tests
