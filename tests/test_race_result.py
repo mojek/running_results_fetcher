@@ -87,6 +87,16 @@ def test_equality():
         'runner_birth': '1980',
         'result_of_the_race': '00:39:12'
     }
+    race_result3 = {
+        'race_name': 'Bieg Niepodległości',
+        'race_date': '2018-11-11',
+        'distance': '10 km',
+        'race_type': 'Bieganie Górskie',
+        'runner_birth': '1980',
+        'result_of_the_race': '00:39:12'
+    }
     race1 = RaceResult(**race_result1)
     race2 = RaceResult(**race_result2)
+    race3 = RaceResult(**race_result3)
     assert race1 == race2
+    assert race2 != race3

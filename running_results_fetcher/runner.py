@@ -1,5 +1,6 @@
 import datetime
 from .race_result import RaceResult
+from .stats import Stats
 
 
 class Runner:
@@ -9,29 +10,17 @@ class Runner:
         self.name = name
         self.birth = birth
         self.race_results = []
+        self.stats = Stats(self)
     # make new class statictics with params from date to date race type
 
-    def best_time_on_distance(self, distance, race_type, **kwargs):
+    def best_time_on_distance(self, distance):
         """Return best time on given distance"""
-        from_date = kwargs.get('from_date')
-        to_date = kwargs.get('to_date')
-        if not self.race_results:
-            raise ValueError("Runner don't have race results")
-        filered_races = self.__filter_race(
-            self.race_results, race_type, from_date, to_date)
-        best_result = sorted(filered_races,
-                             key=lambda race: race.result_of_the_race,
-                             reverse=False)
-        return best_result[0].result_of_the_race
+        stats = self.stats
+        return stats.best_time_on_distance(10)
 
-    def km_count(self, race_type, **kwargs):
-        from_date = kwargs.get('from_date')
-        to_date = kwargs.get('to_date')
-        if not self.race_results:
-            raise ValueError("Runner don't have race results")
-        filered_races = self.__filter_race(
-            self.race_results, race_type, from_date, to_date)
-        return sum(race.distance for race in filered_races)
+    def km_count(self):
+        stats = self.stats
+        return stats.km_count()
 
     def longest_run(self, race_type, **kwargs):
         # TODO longest run
@@ -42,6 +31,11 @@ class Runner:
             race_result = RaceResult(**race)
             if self.__can_add_race(race_result):
                 self.race_results.append(race_result)
+
+    def filter_races(self, **kwargs):
+        stats = Stats(self, **kwargs)
+        self.stats = stats
+        return stats.race_results
 
     @property
     def name(self):

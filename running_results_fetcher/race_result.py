@@ -12,7 +12,8 @@ class RaceResult:
         self.result_of_the_race = kwargs.get('result_of_the_race')
 
     def __eq__(self, other):
-        """Overrides the default implementation of equality"""
+        if not self.race_type == other.race_type:
+            return False
         if not self.race_name == other.race_name:
             return False
         if not self.distance == other.distance:
@@ -26,7 +27,7 @@ class RaceResult:
                                self.result_of_the_race)
 
     def __repr__(self):
-        return "{}".format(self.result_of_the_race)
+        return "{} {}".format(self.race_type, self.result_of_the_race)
 
     @property
     def race_name(self):
