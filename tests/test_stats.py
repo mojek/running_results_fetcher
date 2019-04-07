@@ -10,6 +10,11 @@ def test_init(runner):
     assert stats.to_date is None
 
 
-def test_parsing_to_date(runner):
+def test_parsing_froom_date(runner):
     stats = Stats(runner, from_date="2018-11-10")
     assert stats.from_date == date(2018, 11, 10)
+
+
+def test_parsing_to_date(runner):
+    stats = Stats(runner, to_date="2018-11-10")
+    assert stats.to_date == date(2018, 11, 10)

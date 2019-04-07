@@ -1,4 +1,4 @@
-from datetime import date
+from .helpers import string_to_date
 
 
 class Stats:
@@ -18,5 +18,14 @@ class Stats:
     def from_date(self, from_date):
         self.__from_date = from_date
         if from_date:
-            year, month, day = from_date.split('-')
-            self.__from_date = date(int(year), int(month), int(day))
+            self.__from_date = string_to_date(from_date)
+
+    @property
+    def to_date(self):
+        return self.__to_date
+
+    @to_date.setter
+    def to_date(self, to_date):
+        self.__to_date = to_date
+        if to_date:
+            self.__to_date = string_to_date(to_date)
