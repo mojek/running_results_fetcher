@@ -1,4 +1,5 @@
 from datetime import timedelta, date
+import re
 
 
 def string_to_timedelta(delta_string):
@@ -25,4 +26,19 @@ def string_to_date(date_string):
 
 def convert_distance(distance):
     """Covert distance string or int to float"""
-    # TODO convert_distance and do some tests
+    if not distance:
+        return None
+    if isinstance(distance, str):
+        find_digit = re.match(r"\d*", distance.strip())
+        result = find_digit.group()
+        if result.isnumeric():
+            return float(result)
+        elif distance.strip().lower() == "maraton":
+            return 42.1
+        elif distance.strip().lower() in ["połmaraton", "polmaraton",
+                                          "półmaraton"]:
+            return 21.05
+        else:
+            return None
+
+    return float(distance)
