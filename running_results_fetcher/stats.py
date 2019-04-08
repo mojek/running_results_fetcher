@@ -17,9 +17,7 @@ class Stats:
         return sum(race.distance for race in self.race_results)
 
     def best_time_on_distance(self, distance):
-
         conv_distance = convert_distance(distance)
-        # breakpoint()
         filter_race_with_disntace = [
             race for race in self.race_results
             if race.distance == conv_distance]
@@ -27,7 +25,6 @@ class Stats:
         best_result = sorted(filter_race_with_disntace,
                              key=lambda race: race.result_of_the_race,
                              reverse=False)
-        #
         if not best_result:
             raise ValueError("Runner don't have race results")
         return best_result[0].result_of_the_race
