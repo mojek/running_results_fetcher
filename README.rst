@@ -18,6 +18,9 @@ Running Results Fetcher
      :target: https://pyup.io/repos/github/mojek/running_results_fetcher/
      :alt: Updates
 
+.. image:: https://codecov.io/gh/mojek/running_results_fetcher/branch/master/graph/badge.svg
+     :target: https://codecov.io/gh/mojek/running_results_fetcher     
+
 
 
 Running Results Fetcher download informations about past races for given runners
