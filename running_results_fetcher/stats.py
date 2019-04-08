@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 from .helpers import string_to_date
+from .helpers import convert_distance
 
 
 class Stats:
@@ -16,12 +17,17 @@ class Stats:
         return sum(race.distance for race in self.race_results)
 
     def best_time_on_distance(self, distance):
-        # TODO filter race by distances
-        filter_race_with_disntace = (
-            race for race in self.race_results if race.distance == distance)
+
+        conv_distance = convert_distance(distance)
+        # breakpoint()
+        filter_race_with_disntace = [
+            race for race in self.race_results
+            if race.distance == conv_distance]
+
         best_result = sorted(filter_race_with_disntace,
                              key=lambda race: race.result_of_the_race,
                              reverse=False)
+        #
         if not best_result:
             raise ValueError("Runner don't have race results")
         return best_result[0].result_of_the_race
@@ -56,9 +62,10 @@ class Stats:
             (datetime.now() - timedelta(days=100*365)).date()
 
         to_date = to_date or datetime.now().date()
-        return (race for race in list_of_races
+
+        return [race for race in list_of_races
                 if from_date <= race.race_date <= to_date and
                 (
                     (race.race_type and race.race_type == race_type)
                     or race_type is None)
-                )
+                ]

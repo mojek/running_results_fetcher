@@ -107,9 +107,9 @@ def test_best_time_on_distance():
     runner.add_races([race_1, race_2, race_4, race_3,  race_5, race_6])
 
     runner.filter_races(race_type="Bieganie")
-    assert str(runner.best_time_on_distance(10)) == '0:39:12'
+    assert str(runner.best_time_on_distance(10.0)) == '0:39:12'
 
-    # TODO assert str(runner.best_time_on_distance("10 km")) == '0:39:12'
+    assert str(runner.best_time_on_distance("10 km")) == '0:39:12'
 
     runner.filter_races(race_type="Bieganie górskie")
     assert str(runner.best_time_on_distance(21)) == '0:25:12'
@@ -132,6 +132,7 @@ def test_km_count():
                            distance="5 km", race_type="Bieganie górskie"))
     runner.add_races(races)
     runner.filter_races(race_type="Bieganie")
+    assert runner.km_count() == 73
     assert runner.km_count() == 73
 
 

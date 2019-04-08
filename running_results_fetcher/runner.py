@@ -10,7 +10,7 @@ class Runner:
         self.name = name
         self.birth = birth
         self.race_results = []
-        self.stats = Stats(self)
+        self.stats = None
     # make new class statictics with params from date to date race type
 
     def best_time_on_distance(self, distance):
@@ -38,6 +38,17 @@ class Runner:
         return stats.race_results
 
     @property
+    def stats(self):
+        if self.__stats:
+            return self.__stats
+        else:
+            return Stats(self)
+
+    @stats.setter
+    def stats(self, stats):
+        self.__stats = stats
+
+    @property
     def name(self):
         return self.__name
 
@@ -62,21 +73,3 @@ class Runner:
         if race_result in self.race_results:
             return False
         return True
-
-    @staticmethod
-    def __filter_race(list_of_races, race_type,
-                      from_date=None, to_date=None):
-        if from_date:
-            from_date = datetime.datetime.strptime(
-                from_date, '%Y-%m-%d').date()
-        if to_date:
-            to_date = datetime.datetime.strptime(
-                to_date, '%Y-%m-%d').date()
-
-        from_date = from_date or \
-            (datetime.datetime.now() - datetime.timedelta(days=100*365)).date()
-
-        to_date = to_date or datetime.datetime.now().date()
-        return (race for race in list_of_races
-                if race.race_type == race_type
-                and from_date <= race.race_date <= to_date)
