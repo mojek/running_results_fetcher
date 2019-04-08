@@ -22,5 +22,6 @@ deploy:
     repo: mojek/running_results_fetcher
     python: 3.7
 after_success:
+  - py.test --cov=running_results_fetcher tests/
   - pip install codecov &&  codecov
   
