@@ -12,6 +12,17 @@ class Runner:
         self.stats = None
 
     def add_races(self, races):
+        """Fetches rows from a Bigtable.
+
+    Retrieves rows pertaining to the given keys from the Table instance
+    represented by big_table.  Silly things may happen if
+    other_silly_variable is not None.
+
+    Args:
+        races: An open Bigtable Table instance.
+
+
+    """
         for race in races:
             race_result = RaceResult(**race)
             if self.__can_add_race(race_result):
