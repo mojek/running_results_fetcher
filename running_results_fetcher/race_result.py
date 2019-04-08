@@ -1,5 +1,6 @@
 from datetime import datetime
 from datetime import timedelta
+from .helpers import convert_distance
 
 
 class RaceResult:
@@ -44,22 +45,7 @@ class RaceResult:
 
     @distance.setter
     def distance(self, distance):
-        if distance is None or distance is float:
-            self.__distance = distance
-            return None
-        import re
-        result = distance
-        # TODO  move to convert_distance ib helpers
-        if isinstance(distance, str):
-            if distance.lower() == "maraton":
-                result = 42.1
-            elif distance.lower() == "półmaraton":
-                result = 21.05
-            else:
-                find_digit = re.match(r"\d*", distance)
-                result = find_digit.group()
-
-        self.__distance = float(result)
+        self.__distance = convert_distance(distance)
 
     @property
     def runner_birth(self):
