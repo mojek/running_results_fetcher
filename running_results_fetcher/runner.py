@@ -13,19 +13,6 @@ class Runner:
         self.stats = None
     # make new class statictics with params from date to date race type
 
-    def best_time_on_distance(self, distance):
-        """Return best time on given distance"""
-        stats = self.stats
-        return stats.best_time_on_distance(distance)
-
-    def km_count(self):
-        stats = self.stats
-        return stats.km_count()
-
-    def longest_run(self):
-        stats = self.stats
-        return stats.longest_run()
-
     def add_races(self, races):
         for race in races:
             race_result = RaceResult(**race)

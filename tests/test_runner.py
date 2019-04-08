@@ -107,18 +107,18 @@ def test_best_time_on_distance():
     runner.add_races([race_1, race_2, race_4, race_3,  race_5, race_6])
 
     runner.filter_races(race_type="Bieganie")
-    assert str(runner.best_time_on_distance(10.0)) == '0:39:12'
+    assert str(runner.stats.best_time_on_distance(10.0)) == '0:39:12'
 
-    assert str(runner.best_time_on_distance("10 km")) == '0:39:12'
+    assert str(runner.stats.best_time_on_distance("10 km")) == '0:39:12'
 
     runner.filter_races(race_type="Bieganie górskie")
-    assert str(runner.best_time_on_distance(21)) == '0:25:12'
+    assert str(runner.stats.best_time_on_distance(21)) == '0:25:12'
 
 
 def test_best_time_on_distance_rice_value_error_when_no_run():
     runner = Runner("Michal Mojek", 80)
     with pytest.raises(ValueError):
-        runner.best_time_on_distance('10 km')
+        runner.stats.best_time_on_distance('10 km')
 
 
 def test_km_count():
@@ -132,8 +132,8 @@ def test_km_count():
                            distance="5 km", race_type="Bieganie górskie"))
     runner.add_races(races)
     runner.filter_races(race_type="Bieganie")
-    assert runner.km_count() == 73
-    assert runner.km_count() == 73
+    assert runner.stats.km_count() == 73
+    assert runner.stats.km_count() == 73
 
 
 def test_longest_run():
@@ -147,7 +147,7 @@ def test_longest_run():
                            distance="500 km", race_type="Bieganie górskie"))
     runner.add_races(races)
     runner.filter_races(race_type="Bieganie")
-    assert runner.longest_run() == 50
+    assert runner.stats.longest_run() == 50
 
 
 def test_longest_run_no_filter():
@@ -160,7 +160,7 @@ def test_longest_run_no_filter():
     races.append(race_dict(race_date='2018-11-14',
                            distance="500 km", race_type="Bieganie górskie"))
     runner.add_races(races)
-    assert runner.longest_run() == 500
+    assert runner.stats.longest_run() == 500
 
 
 def test_km_count_without_filter():
@@ -173,7 +173,7 @@ def test_km_count_without_filter():
     races.append(race_dict(race_date='2018-11-14',
                            distance="15 km", race_type="Bieganie górskie"))
     runner.add_races(races)
-    assert runner.km_count() == 78
+    assert runner.stats.km_count() == 78
 
 
 def test_filter_races_by_race_type():
