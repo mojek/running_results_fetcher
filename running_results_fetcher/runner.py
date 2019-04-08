@@ -1,4 +1,3 @@
-import datetime
 from .race_result import RaceResult
 from .stats import Stats
 
@@ -11,7 +10,6 @@ class Runner:
         self.birth = birth
         self.race_results = []
         self.stats = None
-    # make new class statictics with params from date to date race type
 
     def add_races(self, races):
         for race in races:
