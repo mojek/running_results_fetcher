@@ -136,6 +136,33 @@ def test_km_count():
     assert runner.km_count() == 73
 
 
+def test_longest_run():
+    runner = Runner("Michal Mojek", 80)
+    races = []
+    races.append(race_dict(race_date='2018-11-11', distance="50 km"))
+    races.append(race_dict(race_date='2018-11-12', distance="20 km"))
+    races.append(race_dict(race_date='2018-11-13', distance="2 km"))
+    races.append(race_dict(race_date='2018-11-14', distance="1 km"))
+    races.append(race_dict(race_date='2018-11-14',
+                           distance="500 km", race_type="Bieganie górskie"))
+    runner.add_races(races)
+    runner.filter_races(race_type="Bieganie")
+    assert runner.longest_run() == 50
+
+
+def test_longest_run_no_filter():
+    runner = Runner("Michal Mojek", 80)
+    races = []
+    races.append(race_dict(race_date='2018-11-11', distance="50 km"))
+    races.append(race_dict(race_date='2018-11-12', distance="20 km"))
+    races.append(race_dict(race_date='2018-11-13', distance="2 km"))
+    races.append(race_dict(race_date='2018-11-14', distance="1 km"))
+    races.append(race_dict(race_date='2018-11-14',
+                           distance="500 km", race_type="Bieganie górskie"))
+    runner.add_races(races)
+    assert runner.longest_run() == 500
+
+
 def test_km_count_without_filter():
     runner = Runner("Michal Mojek", 80)
     races = []

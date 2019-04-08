@@ -22,9 +22,9 @@ class Runner:
         stats = self.stats
         return stats.km_count()
 
-    def longest_run(self, race_type, **kwargs):
-        # TODO longest run
-        pass
+    def longest_run(self):
+        stats = self.stats
+        return stats.longest_run()
 
     def add_races(self, races):
         for race in races:
