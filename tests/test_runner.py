@@ -88,6 +88,54 @@ def test_uniqness_off_the_race():
     assert len(runner.race_results) == 1
 
 
+def test_dont_add_run_without_distance():
+    runner = Runner("Michal Mojek", 80)
+    # same name and same date
+    races = [{
+        'race_name': 'Bieg Niepodległości',
+        'race_date': '2018-11-11',
+        'distance': '-',
+        'race_type': 'bieganie',
+        'runner_birth': '1980',
+        'result_of_the_race': '00:39:12'
+    },
+        {
+        'race_name': 'Bieg Niepodległości',
+        'race_date': '2018-11-11',
+        'distance': '10 km',
+        'race_type': 'bieganie',
+        'runner_birth': '1980',
+        'result_of_the_race': '00:39:12'
+    },
+    ]
+    runner.add_races(races)
+    assert len(runner.race_results) == 1
+
+
+def test_dont_add_run_without_distance():
+    runner = Runner("Michal Mojek", 80)
+    # same name and same date
+    races = [{
+        'race_name': 'Bieg Niepodległości',
+        'race_date': '2018-11-11',
+        'distance': 'maraton',
+        'race_type': 'bieganie',
+        'runner_birth': '1980',
+        'result_of_the_race': '-'
+    },
+        {
+        'race_name': 'Bieg Niepodległości',
+        'race_date': '2018-11-11',
+        'distance': '10 km',
+        'race_type': 'bieganie',
+        'runner_birth': '1980',
+        'result_of_the_race': '00:39:12'
+    },
+    ]
+    runner.add_races(races)
+    assert len(runner.race_results) == 1
+
+
 def test_best_time_on_distance():
     runner = Runner("Michal Mojek", 80)
     race_4 = race_dict(race_date='2018-11-11',
@@ -115,10 +163,16 @@ def test_best_time_on_distance():
     assert str(runner.stats.best_time_on_distance(21)) == '0:25:12'
 
 
-def test_best_time_on_distance_rice_value_error_when_no_run():
+def test_best_time_on_distance_value_error_when_no_run():
     runner = Runner("Michal Mojek", 80)
     with pytest.raises(ValueError):
         runner.stats.best_time_on_distance('10 km')
+
+
+def test_longest_run_value_error_when_no_run():
+    runner = Runner("Michal Mojek", 80)
+    with pytest.raises(ValueError):
+        runner.stats.longest_run()
 
 
 def test_km_count():

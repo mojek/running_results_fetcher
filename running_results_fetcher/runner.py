@@ -64,6 +64,10 @@ class Runner:
         self.__birth = int(birth)
 
     def __can_add_race(self, race_result):
+        if not race_result.distance:
+            return False
+        if not race_result.result_of_the_race:
+            return False
         if not race_result.runner_birth == self.birth:
             return False
         if race_result in self.race_results:
