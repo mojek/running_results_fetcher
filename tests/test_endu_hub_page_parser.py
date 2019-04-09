@@ -1,7 +1,6 @@
 
-from datetime import date
+
 from running_results_fetcher.enduhube_page_parser import EnduhubPageParser
-from running_results_fetcher.race_result import RaceResult
 
 
 def test_creating_page_with_raw_html():

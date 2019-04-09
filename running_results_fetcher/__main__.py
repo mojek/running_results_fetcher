@@ -9,8 +9,6 @@ from .running_results_fetcher import RunningResultFetcher
 @click.option('--runner', prompt='Runner name')
 @click.option('--birth', prompt='Birth year')
 def main(runner, birth):
-    #from .running_results_fetcher import RunningResultFetcher
-
     rrf = RunningResultFetcher()
     runner = Runner(runner, birth)
     config = SpiderConfig(domain_name='enduhub.com')
@@ -21,7 +19,6 @@ def main(runner, birth):
     rrf.set_spider_config(config)
     rrf.fetch_data_for_runner()
     try:
-
         click.echo("runner longest_run: " + str(runner.stats.longest_run()))
 
         click.echo("runner km_count: " + str(runner.stats.km_count()))

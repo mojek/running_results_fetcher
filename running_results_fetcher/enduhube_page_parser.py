@@ -1,5 +1,4 @@
 from bs4 import BeautifulSoup
-from .race_result import RaceResult
 
 
 class EnduhubPageParser:

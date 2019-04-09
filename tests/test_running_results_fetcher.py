@@ -8,7 +8,8 @@ from unittest.mock import patch
 
 @patch('running_results_fetcher.running_results_fetcher.'
        'SpiderRunner.download_raw_pages')
-def test_fetch_data(download_raw_pages_mock, rrf, spider_config, raw_page_html):
+def test_fetch_data(download_raw_pages_mock, rrf,
+                    spider_config, raw_page_html):
     runner = spider_config.runner
     download_raw_pages_mock.return_value = [raw_page_html]
     rrf.set_spider_config(spider_config)

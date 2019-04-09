@@ -112,7 +112,7 @@ def test_dont_add_run_without_distance():
     assert len(runner.race_results) == 1
 
 
-def test_dont_add_run_without_distance():
+def test_dont_add_run_without_result_of_the_race():
     runner = Runner("Michal Mojek", 80)
     # same name and same date
     races = [{
