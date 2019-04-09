@@ -7,7 +7,7 @@ class EnduhubPageParser:
 
     def __init__(self, raw_html):
         self.raw_html = raw_html
-        self.race_results = []
+        self.race_results_dict = []
 
     def parse_page(self):
         soup = BeautifulSoup(self.raw_html, 'html.parser')
@@ -18,7 +18,7 @@ class EnduhubPageParser:
             runner_birth = row.find('td', class_='yob').get_text()
             result_of_the_race = row.find('td', class_='best').get_text()
             race_type = row.find('td', class_='sport').get_text()
-            race_result = RaceResult(
+            race_result = dict(
                 race_name=event_name,
                 distance=distance,
                 race_date=race_date,
@@ -26,4 +26,5 @@ class EnduhubPageParser:
                 result_of_the_race=result_of_the_race,
                 race_type=race_type)
 
-            self.race_results.append(race_result)
+            self.race_results_dict.append(race_result)
+        return self.race_results_dict
