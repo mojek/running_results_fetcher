@@ -55,10 +55,15 @@ class RaceResult:
     def runner_birth(self, runner_birth):
         if not runner_birth:
             self.__runner_birth = None
-            return
+            return None
+
         if len(str(runner_birth)) == 2:
             runner_birth = "19"+str(runner_birth)
-        self.__runner_birth = int(runner_birth)
+
+        try:
+            self.__runner_birth = int(runner_birth)
+        except ValueError:
+            self.__runner_birth = None
 
     @property
     def race_date(self):
@@ -68,7 +73,8 @@ class RaceResult:
     def race_date(self, string_date):
         """Parse string and change to date"""
         if not string_date:
-            return
+            self.__race_date = None
+            return None
         string_date = datetime.strptime(string_date, '%Y-%m-%d')
         self.__race_date = string_date.date()
 

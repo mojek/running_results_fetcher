@@ -1,3 +1,5 @@
+
+from datetime import date
 from running_results_fetcher.enduhube_page_parser import EnduhubPageParser
 from running_results_fetcher.race_result import RaceResult
 
@@ -36,8 +38,36 @@ def test_race_results_race_name(raw_page_html):
     assert first_race.race_name == 'V Bieg Niepodległości'
 
 
-# def test_race_results_race_name(raw_page_html):
-#     page = PageHolder(raw_page_html)
-#     page.parse_page()
-#     first_race = page.race_results[0]
-#     assert first_race.distance == 10
+def test_race_results_race_distance(raw_page_html):
+    page = EnduhubPageParser(raw_page_html)
+    page.parse_page()
+    first_race = page.race_results[0]
+    assert first_race.distance == 10
+
+
+def test_race_results_race_date(raw_page_html):
+    page = EnduhubPageParser(raw_page_html)
+    page.parse_page()
+    first_race = page.race_results[0]
+    assert first_race.race_date == date(2018, 11, 10)
+
+
+def test_race_results_runner_birth(raw_page_html):
+    page = EnduhubPageParser(raw_page_html)
+    page.parse_page()
+    first_race = page.race_results[0]
+    assert first_race.runner_birth == 1980
+
+
+def test_race_results_result_of_the_race(raw_page_html):
+    page = EnduhubPageParser(raw_page_html)
+    page.parse_page()
+    first_race = page.race_results[0]
+    assert str(first_race.result_of_the_race) == '0:39:49'
+
+
+def test_race_results_result_race_type(raw_page_html):
+    page = EnduhubPageParser(raw_page_html)
+    page.parse_page()
+    first_race = page.race_results[0]
+    assert str(first_race.race_type) == 'Bieganie'

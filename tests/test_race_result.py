@@ -51,6 +51,11 @@ def test_runner_brith_with_short_string():
     assert race_result.runner_birth == 1980
 
 
+def test_runner_brith_with_its_not_numerical():
+    race_result = RaceResult(runner_birth='-')
+    assert race_result.runner_birth is None
+
+
 def test_create_race_from_dict():
     race = {
         'race_name': 'Biegnij Warszawo',
