@@ -3,32 +3,58 @@ from .stats import Stats
 
 
 class Runner:
-    """class that represents the runner"""
+    """A class that represents a Runner
+
+    ...
+    Attributes
+    """
 
     def __init__(self, name, birth):
+        """
+        Parameters
+        ----------
+        name : str
+            name and surname of the runner 
+        birth : str
+            the year of birth of a runner
+
+        """
         self.name = name
         self.birth = birth
         self.race_results = []
         self.stats = None
 
     def add_races(self, races):
-        """Fetches rows from a Bigtable.
+        """Add a race list to the runner.
 
-    Retrieves rows pertaining to the given keys from the Table instance
-    represented by big_table.  Silly things may happen if
-    other_silly_variable is not None.
+        A single race is in the form of a dictionary.
+        The race is added to the runner if it meets the specified conditions.
+        A RaceResult object is created from a single dictionary.
 
-    Args:
-        races: An open Bigtable Table instance.
+        Parameters
+        ----------
+        races : list
+            List of dictionaries, dictionary has keys:race_name, 
+            distance, race_date, runner_birth, result_of_the_race, race_type
 
 
-    """
+        Returns
+        -------
+            None
+        """
         for race in races:
             race_result = RaceResult(**race)
             if self.__can_add_race(race_result):
                 self.race_results.append(race_result)
 
     def filter_races(self, **kwargs):
+        """The method creates a stats object and returns filtered results.
+
+        Parameters
+        ----------
+        kwargs : Arguments used to create the object Stats
+        """
+
         stats = Stats(self, **kwargs)
         self.stats = stats
         return stats.race_results
