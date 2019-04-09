@@ -11,12 +11,7 @@ class Spider(scrapy.Spider):
     next_page_selector = None
 
     def parse(self, response):
-        page = response.url[-1]
-        filename = 'quotes-%s.html' % page
-        with open(filename, 'wb') as f:
-            f.write(response.body)
         self.raw_pages.append(response.body)
-        self.log('Saved file %s' % filename)
         next_page = self.__find_next_page(response)
         if next_page:
             yield scrapy.Request(
