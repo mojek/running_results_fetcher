@@ -30,6 +30,8 @@ class Stats:
         return best_result[0].result_of_the_race
 
     def longest_run(self):
+        if not self.race_results:
+            raise ValueError("Runner don't have race results")
         return max(race.distance for race in self.race_results)
 
     @property
