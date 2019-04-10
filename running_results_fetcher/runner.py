@@ -3,34 +3,45 @@ from .stats import Stats
 
 
 class Runner:
-    "A class represents a Runner"
+    """A class that represents a Runner
+
+    ...
+    Attributes
+    """
 
     def __init__(self, name, birth):
         """
-        Arguments:
-            name {str} -- name and surname of the runner
-            birth {str} --the year of birth of a runner
-        """
+        Parameters
+        ----------
+        name : str
+            name and surname of the runner 
+        birth : str
+            the year of birth of a runner
 
+        """
         self.name = name
         self.birth = birth
         self.race_results = []
         self.stats = None
 
     def add_races(self, races):
-        """
-        Add a race list to the runner.
+        """Add a race list to the runner.
 
         A single race is in the form of a dictionary.
         The race is added to the runner if it meets the specified conditions.
         A RaceResult object is created from a single dictionary.
 
-        Arguments:
-            races(list): List of dictionaries, dictionary
-                has keys: race_name, distance, race_date,
-                runner_birth, result_of_the_race, race_type
-        """
+        Parameters
+        ----------
+        races : list
+            List of dictionaries, dictionary has keys:race_name, 
+            distance, race_date, runner_birth, result_of_the_race, race_type
 
+
+        Returns
+        -------
+            None
+        """
         for race in races:
             race_result = RaceResult(**race)
             if self.__can_add_race(race_result):
@@ -39,10 +50,10 @@ class Runner:
     def filter_races(self, **kwargs):
         """The method creates a stats object and returns filtered results.
 
-         Arguments:
-             kwargs : Arguments used to create the object Stats
-
-         """
+        Parameters
+        ----------
+        kwargs : Arguments used to create the object Stats
+        """
 
         stats = Stats(self, **kwargs)
         self.stats = stats

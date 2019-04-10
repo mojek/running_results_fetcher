@@ -13,6 +13,7 @@ class SpiderRunner:
             'USER_AGENT':
             'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'
         })
+        print(self)
         process.crawl(self.spider)
         process.start()
         raw_pages = self.spider.raw_pages

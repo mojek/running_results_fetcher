@@ -1,6 +1,7 @@
 from pytest import fixture
 from running_results_fetcher.runner import Runner
-from running_results_fetcher.fetcher import Fetcher
+from running_results_fetcher.running_results_fetcher \
+    import RunningResultFetcher
 from running_results_fetcher.spider_config import SpiderConfig
 from running_results_fetcher.spider import Spider
 
@@ -12,7 +13,7 @@ def runner():
 
 @fixture(scope="function")
 def rrf():
-    return Fetcher('Michał Mojek', 1980)
+    return RunningResultFetcher()
 
 
 @fixture(scope="function")
