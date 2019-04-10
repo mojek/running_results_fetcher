@@ -22,12 +22,12 @@ class Stats:
             race for race in self.race_results
             if race.distance == conv_distance]
 
-        best_result = sorted(filter_race_with_disntace,
-                             key=lambda race: race.result_of_the_race,
-                             reverse=False)
+        best_result = min(filter_race_with_disntace,
+                          key=lambda race: race.result_of_the_race,
+                          )
         if not best_result:
             raise ValueError("Runner don't have race results")
-        return best_result[0].result_of_the_race
+        return best_result.result_of_the_race
 
     def longest_run(self):
         if not self.race_results:
