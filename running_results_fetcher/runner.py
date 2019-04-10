@@ -14,7 +14,7 @@ class Runner:
         Parameters
         ----------
         name : str
-            name and surname of the runner 
+            name and surname of the runner
         birth : str
             the year of birth of a runner
 
@@ -34,7 +34,7 @@ class Runner:
         Parameters
         ----------
         races : list
-            List of dictionaries, dictionary has keys:race_name, 
+            List of dictionaries, dictionary has keys:race_name,
             distance, race_date, runner_birth, result_of_the_race, race_type
 
 
