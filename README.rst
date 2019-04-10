@@ -30,9 +30,7 @@ Running Results Fetcher download informations about past races for given runners
 * Documentation: https://running-results-fetcher.readthedocs.io.
 
 
-Features
---------
 
-* TODO
+
 
 
