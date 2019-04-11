@@ -5,8 +5,8 @@ Usage
 To use Running Results Fetcher in a project::
 
     
-    import running_results_fetcher as rrf
-    fetcher = rrf.Fetcher('Michał Mojek', 1980)
+    from running_results_fetcher import RunningResultFetcher
+    fetcher = RunningResultFetcher('Michał Mojek', 1980)
 
     # now you have to run a spider and fetch data
     # this will return a runner
