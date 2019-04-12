@@ -1,4 +1,5 @@
-from scrapy.crawler import CrawlerProcess
+from scrapy.crawler import CrawlerRunner
+from twisted.internet import reactor
 
 
 class SpiderRunner:
@@ -9,17 +10,18 @@ class SpiderRunner:
         self.spider.set_config(spider_config)
 
     def download_raw_pages(self):
-        process = CrawlerProcess({
+        process = CrawlerRunner({
             'USER_AGENT':
             'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'
         })
 
-        process.crawl(self.spider)
-        process.start()
-        raw_pages = self.spider.raw_pages
+        crawler = process.crawl(self.spider)
+
         self.spider.raw_pages = []
         self.finished = True
-        process.stop()
+        crawler.addBoth(lambda _: reactor.stop())
+        reactor.run()  # the script will block here until the crawling is finished
+        raw_pages = self.spider.raw_pages
         return raw_pages
 
     def __str__(self):
