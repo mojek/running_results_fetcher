@@ -20,7 +20,7 @@ class SpiderRunner:
         self.spider.raw_pages = []
         self.finished = True
         crawler.addBoth(lambda _: reactor.stop())
-        reactor.run()  # the script will block here until the crawling is finished
+        reactor.run()
         raw_pages = self.spider.raw_pages
         return raw_pages
 
