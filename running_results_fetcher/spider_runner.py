@@ -19,6 +19,7 @@ class SpiderRunner:
         raw_pages = self.spider.raw_pages
         self.spider.raw_pages = []
         self.finished = True
+        process.stop()
         return raw_pages
 
     def __str__(self):
