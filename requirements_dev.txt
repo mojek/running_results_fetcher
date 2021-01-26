@@ -11,6 +11,6 @@ codecov==2.0.15
 cookiecutter==1.6.0
 autopep8==1.4.3
 
-pytest==4.4.0
+pytest==6.2.2
 pytest-runner==4.4
 pytest-cov==2.6.1 
